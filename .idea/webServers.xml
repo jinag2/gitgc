@@ -5,6 +5,9 @@
       <webServer id="30bc6227-fb8b-45e7-9126-a3ef422315d6" name="ToLocal" url="http://localhost">
         <fileTransfer port="0" mountedRoot="D:\Temp" accessType="MOUNT" />
       </webServer>
+      <webServer id="d4d948ad-9cfe-4c8d-a774-fd7f76fb8ac0" name="py" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="D:\py" accessType="MOUNT" />
+      </webServer>
     </option>
   </component>
 </project>
