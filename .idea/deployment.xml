@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="ToLocal">
+    <serverData>
+      <paths name="ToLocal">
+        <serverdata>
+          <mappings>
+            <mapping deploy="gitgcd" local="$PROJECT_DIR$" web="/gitgcd" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
