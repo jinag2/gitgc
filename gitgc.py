@@ -1,4 +1,4 @@
-#! python3
+#!/usr/bin/env python3
 
 import sys
 import os
@@ -7,7 +7,7 @@ import subprocess
 
 def main():
 	if len(sys.argv) == 1 or sys.argv[1] in ('-h', '"-H', '/h', '/H', '--help', '--HELP', '?', '/?'):
-		print('usage: py gitgc.py path')
+		print('usage: py gitgc.py <path>')
 		sys.exit()
 
 	target_path = sys.argv[1]
