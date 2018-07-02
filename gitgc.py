@@ -16,6 +16,12 @@ def main():
 		return
 
 	work_dir = os.getcwd()
+
+	if sys.argv[1] == ".":
+		target_path = os.getcwd()
+	elif sys.argv[1] == "..":
+		target_path = os.path.dirname(os.getcwd())
+
 	git_folder_list = []
 	get_git_folders(target_path, git_folder_list, False)
 
