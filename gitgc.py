@@ -3,12 +3,14 @@
 import sys
 import os
 import subprocess
+import glob
 
 
 def main():
 	if len(sys.argv) == 1 or sys.argv[1] in ('-h', '"-H', '/h', '/H', '--help', '--HELP', '?', '/?'):
 		print('usage: py gitgc.py <path>')
 		sys.exit()
+		return
 
 	target_path = sys.argv[1]
 	if not os.path.isdir(target_path):
@@ -17,13 +19,14 @@ def main():
 
 	work_dir = os.getcwd()
 
-	if sys.argv[1] == ".":
-		target_path = os.getcwd()
-	elif sys.argv[1] == "..":
-		target_path = os.path.dirname(os.getcwd())
+# 	if sys.argv[1] == ".":
+# 	    target_path = os.getcwd()
+# 	elif sys.argv[1] == "..":
+# 		target_path = os.path.dirname(os.getcwd())
 
+	target_path = os.path.abspath(sys.argv[1])  # converted to absolute path if the path is relative
 	git_folder_list = []
-	get_git_folders(target_path, git_folder_list, False)
+	get_git_folders(target_path, git_folder_list, True)
 
 	print_git_folders(git_folder_list)
 	print('Total git folder: ' + str(len(git_folder_list)) + '\n')
@@ -32,6 +35,19 @@ def main():
 	os.chdir(work_dir)
 
 
+def get_git_folders(cur_path, git_folder_list, print_folder):
+	if print_folder:
+		print(cur_path)
+
+	os.chdir(cur_path)
+	folder_list = glob.glob("**/.git", recursive=True)
+
+	for elem in folder_list:
+		git_folder_list.append(os.path.dirname(os.path.abspath(elem)))
+
+
+# old version of get_git_folders
+'''
 def get_git_folders(cur_path, git_folder_list, print_folder):
 	if print_folder:
 		print(cur_path)
@@ -54,7 +70,7 @@ def get_git_folders(cur_path, git_folder_list, print_folder):
 
 	for elem in sub_folder_list:
 		get_git_folders(elem, git_folder_list, False)
-
+'''
 
 def print_git_folders(git_folder_list):
 	print(' git folder list '.center(31, '='))
